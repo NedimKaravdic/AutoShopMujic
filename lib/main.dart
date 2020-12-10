@@ -20,6 +20,14 @@ class QuizzApp extends StatefulWidget {
 
 class _QuizzAppState extends State<QuizzApp> {
   @override
+  void initState() {
+    super.initState();
+    assetsAudioPlayer
+        .newPlayer()
+        .open(Audio("sounds/backgroundMusic.mp3"), volume: 0.2);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
