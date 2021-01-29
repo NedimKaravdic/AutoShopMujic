@@ -1,0 +1,57 @@
+{
+  "project_info": {
+    "project_number": "73979617785",
+    "firebase_url": "https://us-capitals-quiz.firebaseio.com",
+    "project_id": "us-capitals-quiz",
+    "storage_bucket": "us-capitals-quiz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73979617785:android:4bb8aa472cb6775ed01d28",
+        "android_client_info": {
+          "package_name": "com.bssolutions.USstatesQuiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73979617785-0hdsbjvi04lifcqsv5rc9a0poicopb2s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bssolutions.USstatesQuiz",
+            "certificate_hash": "951e1ca022a120f3c210d1e8eb4629506103ec26"
+          }
+        },
+        {
+          "client_id": "73979617785-7vpg08ug2gikqm1cil7efn791ief9as5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bssolutions.USstatesQuiz",
+            "certificate_hash": "d4a3ad2095fee25dcbd359cd2a22ecb127d34169"
+          }
+        },
+        {
+          "client_id": "73979617785-s3boe803f2uifn2trc8oka4ng26rrct5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB37L_GVRAYYPQXYElRjQujHKQOkUYkvj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "73979617785-s3boe803f2uifn2trc8oka4ng26rrct5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-8549613552572730~9439202369"
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,4 @@
+import 'package:Quiz_App/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:Quiz_App/models/USstates.dart';
 import 'package:flutter/services.dart';
@@ -13,12 +14,15 @@ class AnswerTab extends StatefulWidget {
   final String capitalCity;
   final String stateName;
   final Function reduceHealth;
+  bool victory;
   int screenScore;
-  final int score;
+  int score;
   bool isNotClickable;
   Timer newTimer;
   int seconds;
   int health;
+  Function trigger;
+
   List<String> correct;
 
   AnswerTab({
@@ -35,6 +39,8 @@ class AnswerTab extends StatefulWidget {
     @required this.seconds,
     @required this.health,
     @required this.correct,
+    @required this.victory,
+    this.trigger,
   });
 
   @override
@@ -49,6 +55,7 @@ class _AnswerTabState extends State<AnswerTab> {
   double hajt;
   bool clickPeriod = false;
   bool time = true;
+  int clickCount = 0;
 
   Map<String, Color> colors = {
     'color0': Colors.white,
@@ -68,6 +75,7 @@ class _AnswerTabState extends State<AnswerTab> {
 
   void registerClick(String city, String colorIndex, String txtColorIndex,
       double btnHeight, bool time) {
+    clickCount++;
     if (city != widget.capitalCity) {
       print("Wrong");
       AssetsAudioPlayer.newPlayer().open(Audio("sounds/wrong.mp3"));
@@ -75,16 +83,24 @@ class _AnswerTabState extends State<AnswerTab> {
       clickPeriod = true;
       colors[colorIndex] = wrongColor;
       widget.isNotClickable = true;
+      if (clickCount != 2) {
+        Timer(Duration(milliseconds: 1800), () {
+          if (widget.victory != true) {
+            widget.reduceHealth();
+          }
 
-      Timer(Duration(milliseconds: 1800), () {
-        widget.reduceHealth();
-        colors[colorIndex] = color;
-        clickPeriod = false;
-        widget.nextState(false);
-      });
+          colors[colorIndex] = color;
+          clickPeriod = false;
+
+          widget.nextState(false);
+        });
+      } else {
+        clickCount = 0;
+      }
     } else {
       if (widget.health != 0) {
         print("True");
+        widget.trigger();
         time
             ? AssetsAudioPlayer.newPlayer().open(Audio("sounds/correct.mp3"))
             : AssetsAudioPlayer.newPlayer().open(Audio("sounds/wrong.mp3"));
@@ -92,10 +108,14 @@ class _AnswerTabState extends State<AnswerTab> {
         clickPeriod = true;
         widget.isNotClickable = true;
         Timer(Duration(milliseconds: 1800), () {
-          time ? print("Neda je King") : widget.reduceHealth();
+          if (widget.victory != true) {
+            time ? print("Correct Answer") : widget.reduceHealth();
+          }
+
           colors[colorIndex] = color;
           textColors[txtColorIndex] = Colors.black;
           clickPeriod = false;
+
           time ? widget.nextState(true) : widget.nextState(false);
         });
         time
@@ -105,6 +125,7 @@ class _AnswerTabState extends State<AnswerTab> {
         colors[colorIndex] = correctColor;
       }
     }
+    clickCount = 0;
   }
 
   Widget buildRaisedButton(
@@ -114,8 +135,9 @@ class _AnswerTabState extends State<AnswerTab> {
     double btnHeight,
   ) {
     return Container(
-      width: 200,
-      margin: EdgeInsets.symmetric(vertical: 3),
+      width: SizeConfig.blockSizeHorizontal * 58,
+      margin:
+          EdgeInsets.symmetric(vertical: SizeConfig.blockSizeHorizontal * 0.5),
       child: RaisedButton(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
@@ -132,7 +154,7 @@ class _AnswerTabState extends State<AnswerTab> {
               color: clickPeriod && text == widget.capitalCity
                   ? Colors.white
                   : textColors[txtColorIndex],
-              fontSize: 20),
+              fontSize: SizeConfig.blockSizeHorizontal * 5.5),
         ),
         onPressed: widget.isNotClickable
             ? () {}
@@ -152,7 +174,7 @@ class _AnswerTabState extends State<AnswerTab> {
       registerClick(widget.capitalCity, "green", "txt", 0, false);
     }
     return Container(
-      margin: EdgeInsets.only(top: 15),
+      margin: EdgeInsets.only(top: SizeConfig.blockSizeHorizontal * 4),
       child: Column(
         children: <Widget>[
           buildRaisedButton(widget.states[0], 'color0', 'txtColor0', hajt),

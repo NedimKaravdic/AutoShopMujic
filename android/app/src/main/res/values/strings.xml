@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<resources>
+<string name = "app_name">US States Quiz</string>
+<string name="facebook_app_id">1669089789936934</string>
+<string name="fb_login_protocol_scheme">fb1669089789936934</string>
+</resources>

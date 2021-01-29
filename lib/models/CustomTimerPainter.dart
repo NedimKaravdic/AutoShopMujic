@@ -1,3 +1,5 @@
+import 'package:Quiz_App/shared/shadows.dart';
+import 'package:Quiz_App/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
@@ -13,15 +15,19 @@ class _CircularTimerState extends State<CircularTimer> {
       child: Center(
         child: CircularCountDownTimer(
           duration: 5,
-          fillColor: Colors.blue,
+          fillColor: Colors.orangeAccent,
           color: Colors.white,
           isReverse: true,
-          width: 100,
-          height: 100,
+          width: SizeConfig.blockSizeHorizontal * 55,
+          height: SizeConfig.blockSizeHorizontal * 28,
           textStyle: TextStyle(
-              color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
+              color: Colors.amberAccent,
+              shadows: nameShadows,
+              fontSize: SizeConfig.blockSizeHorizontal * 7,
+              fontWeight: FontWeight.bold),
           onComplete: () {
-            print("Hello");
+            Navigator.of(context).pop();
+            Navigator.of(context).pop();
           },
         ),
       ),

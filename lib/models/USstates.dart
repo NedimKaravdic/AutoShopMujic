@@ -295,11 +295,6 @@ class StatesList with ChangeNotifier {
     _states[randNum].givenCities.shuffle();
   }
 
-  void removeState(int randNum) {
-    _states.removeAt(randNum);
-    notifyListeners();
-  }
-
   List<USstate> get states {
     _states.shuffle();
     return [..._states];

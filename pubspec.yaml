@@ -25,9 +25,24 @@ dependencies:
     sdk: flutter
   provider: ^4.3.1
   assets_audio_player: ^2.0.8+4
-  shared_preferences: ^0.5.8
+  shared_preferences: ^0.5.12+4
   circular_countdown_timer: ^0.0.4
-  
+  flutter_facebook_auth: ^1.0.2+2
+  firebase_auth: ^0.18.0+1
+  cloud_firestore: ^0.14.4
+  firebase_core: ^0.5.3
+  google_sign_in: ^4.5.6
+  flutter_twitter_login: ^1.1.0
+  auto_size_text: ^2.1.0
+  fading_edge_scrollview: ^1.1.4
+  cached_network_image: ^2.4.1
+  flutter_spinkit: ^4.1.2+1
+  firebase_admob: ^0.10.3
+  confetti: ^0.5.4+1
+
+
+
+
 
 
 
@@ -39,6 +54,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  change_app_package_name: ^0.1.2
+  flutter_launcher_icons: ^0.8.1 
+    
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -107,8 +125,17 @@ flutter:
    - images/states/wyoming_wy.png
    - sounds/wrong.mp3
    - sounds/correct.mp3
+   - sounds/backgroundMusic.mp3
    - images/rewards.jpg
    - images/gameModeScreen.jpg
+   - images/tryAgainGif.gif
+   - images/rainbow.gif
+   - images/clouds.jpg
+   - images/rainbowLoading.gif
+   - images/victoryGif.gif
+   - images/confettiTexture.png
+   - sounds/victorySound.mp3
+   - sounds/tryagainSound.mp3
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -145,7 +172,15 @@ flutter:
 
      - family: AmericanDream
        fonts: 
-         - asset: fonts/AmericanDream-1v9j.ttf          
+         - asset: fonts/AmericanDream-1v9j.ttf
+
+     - family: ShinySignature
+       fonts: 
+         - asset: fonts/ShinySignature.ttf
+
+     - family: Certificate
+       fonts: 
+         - asset: fonts/Certificate.ttf                         
 
 
          

@@ -1,9 +1,18 @@
+import 'package:Quiz_App/screens/tryAgainDialog.dart';
+import 'package:Quiz_App/shared/alertDialogServices.dart';
+import 'package:Quiz_App/shared/shadows.dart';
+import 'package:Quiz_App/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:Quiz_App/models/CustomTimerPainter.dart';
 
 class ExtraLifeScreen extends StatefulWidget {
   bool isCancelable;
-  ExtraLifeScreen({@required this.isCancelable});
+  int score;
+  Function restart;
+  ExtraLifeScreen(
+      {@required this.isCancelable,
+      @required this.score,
+      @required this.restart});
   @override
   _ExtraLifeScreenState createState() => _ExtraLifeScreenState();
 }
@@ -16,27 +25,34 @@ class _ExtraLifeScreenState extends State<ExtraLifeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 250,
-        width: 350,
+        height: SizeConfig.blockSizeVertical * 35,
+        width: SizeConfig.blockSizeHorizontal * 5,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("images/clouds.jpg"), fit: BoxFit.cover),
+            borderRadius: BorderRadius.circular(16)),
         child: Center(
           child: Column(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.all(15),
-                child: Text(
-                  "Watch Ad For Extra Life ?",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontFamily: "Digitalt",
-                      fontSize: 25),
+                padding: EdgeInsets.all(SizeConfig.blockSizeHorizontal * 4),
+                child: Center(
+                  child: Text(
+                    "Watch Ad For Extra Life ?",
+                    style: TextStyle(
+                        color: Colors.white,
+                        shadows: nameShadows,
+                        fontFamily: "Digitalt",
+                        fontSize: SizeConfig.blockSizeHorizontal * 6),
+                  ),
                 ),
               ),
               SizedBox(
-                height: 5,
+                height: SizeConfig.blockSizeVertical * 1,
               ),
               Center(child: CircularTimer()),
               SizedBox(
-                height: 5,
+                height: SizeConfig.blockSizeVertical * 2,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -47,32 +63,16 @@ class _ExtraLifeScreenState extends State<ExtraLifeScreen> {
                     child: Text(
                       "NO",
                       style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: "Digitalt",
-                        fontSize: 20,
-                        shadows: [
-                          Shadow(
-                              // bottomLeft
-                              offset: Offset(-1.5, -1.5),
-                              color: Colors.black),
-                          Shadow(
-                              // bottomRight
-                              offset: Offset(1.5, -1.5),
-                              color: Colors.black),
-                          Shadow(
-                              // topRight
-                              offset: Offset(1.5, 1.5),
-                              color: Colors.black),
-                          Shadow(
-                              // topLeft
-                              offset: Offset(-1.5, 1.5),
-                              color: Colors.black),
-                        ],
-                      ),
+                          color: Colors.white,
+                          fontFamily: "Digitalt",
+                          fontSize: SizeConfig.blockSizeHorizontal * 6,
+                          shadows: sharedShadows),
                     ),
                     onPressed: () {
-                      popFunction(context);
-                      widget.isCancelable = true;
+                      tryAgainDialog(
+                          context, false, widget.score, widget.restart);
+                      Navigator.of(context).pop();
+                      //   widget.isCancelable = true;
                     },
                   ),
                   SizedBox(
@@ -84,32 +84,12 @@ class _ExtraLifeScreenState extends State<ExtraLifeScreen> {
                     child: Text(
                       "YES",
                       style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: "Digitalt",
-                        fontSize: 20,
-                        shadows: [
-                          Shadow(
-                              // bottomLeft
-                              offset: Offset(-1.5, -1.5),
-                              color: Colors.black),
-                          Shadow(
-                              // bottomRight
-                              offset: Offset(1.5, -1.5),
-                              color: Colors.black),
-                          Shadow(
-                              // topRight
-                              offset: Offset(1.5, 1.5),
-                              color: Colors.black),
-                          Shadow(
-                              // topLeft
-                              offset: Offset(-1.5, 1.5),
-                              color: Colors.black),
-                        ],
-                      ),
+                          color: Colors.white,
+                          fontFamily: "Digitalt",
+                          fontSize: SizeConfig.blockSizeHorizontal * 6,
+                          shadows: sharedShadows),
                     ),
-                    onPressed: () {
-                      print("g0v");
-                    },
+                    onPressed: () {},
                   ),
                 ],
               )

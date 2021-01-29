@@ -1,6 +1,8 @@
 import 'package:Quiz_App/screens/PlayScreen.dart';
+import 'package:Quiz_App/shared/shadows.dart';
+import 'package:Quiz_App/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
-import 'package:Quiz_App/models/AchievementChecker.dart';
+
 import 'package:provider/provider.dart';
 
 class GameModeScreen extends StatelessWidget {
@@ -12,18 +14,19 @@ class GameModeScreen extends StatelessWidget {
         return Container(
           child: SizedBox(
             //width: 200,
-            width: constraints.maxWidth * 0.6,
+            width: SizeConfig.blockSizeHorizontal * 60,
             // height: 80,
 
             child: Container(
-              margin: EdgeInsets.only(bottom: 18),
+              margin:
+                  EdgeInsets.only(bottom: SizeConfig.blockSizeHorizontal * 5),
               child: RaisedButton(
                 child: Text(
                   text,
                   style: TextStyle(
                       color: Colors.black,
                       fontFamily: "KronaOne",
-                      fontSize: 25 * curscale),
+                      fontSize: SizeConfig.blockSizeHorizontal * 6),
                 ),
                 onPressed: () {
                   function();
@@ -41,8 +44,8 @@ class GameModeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     //Provider.of<Achievements>(context).checkforAchievement();
-    Provider.of<Achievements>(context).returnTrue();
     final curScaleFactor = MediaQuery.of(context).textScaleFactor;
     return SafeArea(
       child: Scaffold(
@@ -58,13 +61,14 @@ class GameModeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.only(left: 15),
+                      padding: EdgeInsets.only(
+                          left: SizeConfig.blockSizeHorizontal * 4),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           Container(
-                            width: constraints.maxWidth * 0.13,
-                            height: constraints.maxHeight * 0.07,
+                            width: SizeConfig.blockSizeHorizontal * 15,
+                            height: SizeConfig.blockSizeVertical * 7,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: Colors.white,
@@ -72,7 +76,7 @@ class GameModeScreen extends StatelessWidget {
                             ),
                             child: IconButton(
                                 icon: Icon(
-                                  Icons.keyboard_arrow_left,
+                                  Icons.arrow_back,
                                 ),
                                 onPressed: () {
                                   Navigator.of(context).pop();
@@ -83,40 +87,21 @@ class GameModeScreen extends StatelessWidget {
                     ),
                     SizedBox(
                       //height: 180,
-                      height: constraints.maxHeight * 0.253,
+                      height: SizeConfig.blockSizeVertical * 22,
                     ),
                     Text(
                       "Pick Your Game Mode",
                       style: TextStyle(
-                        color: Colors.amber,
-                        fontFamily: "Digitalt",
-                        fontSize: 40 * curScaleFactor,
-                        shadows: [
-                          Shadow(
-                              // bottomLeft
-                              offset: Offset(-1.5, -1.5),
-                              color: Colors.black),
-                          Shadow(
-                              // bottomRight
-                              offset: Offset(1.5, -1.5),
-                              color: Colors.black),
-                          Shadow(
-                              // topRight
-                              offset: Offset(1.5, 1.5),
-                              color: Colors.black),
-                          Shadow(
-                              // topLeft
-                              offset: Offset(-1.5, 1.5),
-                              color: Colors.black),
-                        ],
-                      ),
+                          color: Colors.amber,
+                          fontFamily: "Digitalt",
+                          fontSize: SizeConfig.blockSizeHorizontal * 10,
+                          shadows: sharedShadows),
                     ),
                     SizedBox(
-                      //  height: 20,
-                      height: constraints.maxHeight * 0.031,
-                    ),
+                        //  height: 20,
+                        height: SizeConfig.blockSizeHorizontal * 6),
                     Container(
-                      height: constraints.maxHeight * 0.113,
+                      height: SizeConfig.blockSizeVertical * 11,
                       child: buildRaisedButton("Normal", () {
                         Navigator.of(context)
                             .push(MaterialPageRoute(builder: (context) {
@@ -127,7 +112,7 @@ class GameModeScreen extends StatelessWidget {
                       }, curScaleFactor),
                     ),
                     Container(
-                      height: constraints.maxHeight * 0.113,
+                      height: SizeConfig.blockSizeVertical * 11,
                       child: buildRaisedButton("Challenge", () {
                         Navigator.of(context)
                             .push(MaterialPageRoute(builder: (context) {
